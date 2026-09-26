@@ -1,0 +1,105 @@
+.header {
+    height: 128px;
+    background-color: rgba(231, 108, 31, 1);
+}
+
+.header-content {
+    width: 100%;
+    height: 100%;
+    padding-left: 100px;
+    padding-right: 40px;
+
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.header-logo {
+    width: 100px;
+    height: auto;
+}
+
+.menu-button {
+    width: 60px;
+    height: 60px;
+    padding: 0;
+
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 7px;
+
+    background: transparent;
+    border: none;
+
+    cursor: pointer;
+}
+
+.menu-button span {
+    display: block;
+    width: 40px;
+    height: 4px;
+    background-color: white;
+    border-radius: 2px;
+}
+
+.hero {
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+}
+
+.hero-image {
+    width: 100%;
+    height: 100%;
+    display: block;
+    object-fit: cover;
+    object-position: center 78%;
+}
+
+.restaurant-info {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: white;
+    padding-bottom: 45px;
+}
+
+.burger-image {
+    width: 180px;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 50%;
+    border: 8px solid white;
+    margin-top: -90px;
+    position: relative;
+    z-index: 2;
+}
+
+.restaurant-title {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    margin-top: 15px;
+}
+.restaurant-name {
+    width: 260px;
+    height: auto;
+    display: block;
+}
+
+.restaurant-rating {
+    width: 94px;
+    height: auto;
+}
+.restaurant-description {
+    margin: 18px 0 0;
+    font-size: 20px;
+    font-weight: 600;
+    color: #333333;
+    text-align: center;
+}
