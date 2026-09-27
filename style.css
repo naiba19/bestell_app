@@ -293,6 +293,154 @@
     font-weight: 400;
 }
 
+.basket {
+    position: fixed;
+    top: 0;
+    right: 0;
+    width: 435px;
+    height: 794px;
+    box-sizing: border-box;
+     padding: 48px 30px 32px;
+    background-color:rgba(54, 53, 52, 1);
+    color: white;
+    border-radius: 30px 0 0 30px;
+    z-index: 100;
+}
+
+.basket h2 {
+     width: 178px;
+    height: 35px;
+
+    margin: 0 auto 28px;
+
+    font-family: "Palanquin";
+    font-size: 32px;
+    font-weight: 700;
+    line-height: 120%;
+    text-align: center;
+}
+
+.basket-items {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.basket-item {
+    width: 340px;
+    height: 103px;
+    box-sizing: border-box;
+    padding: 20px;
+    background-color: #f9e7d5;
+    color: #363432;
+    border-radius: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.basket-item-info {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    max-width: 250px;
+}
+
+.basket-item-info strong {
+    width: 258px;
+    height: 52px;
+    font-family: "Palanquin", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.basket-item-info span {
+     width: 43px;
+    height: 29px;
+    font-family: "Palanquin", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.basket-item-price {
+     width: 67px;
+    height: 26px;
+    font-family: "Palanquin", sans-serif;
+    font-size: 22px;
+    font-weight: 700;
+    line-height: 120%;
+}
+
+.basket-summary {
+    width: 340px;
+    height: 208px;
+    margin-top: 36px;
+}
+
+.basket-summary > div:not(.basket-total) {
+    width: 340px;
+    height: 24px;
+    margin: 0;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-family: "Palanquin";
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 120%;
+}
+.basket-summary p span {
+    font-family: "Palanquin";
+    font-size: 20px;
+    font-weight: 600;
+    line-height: 24px;
+    line-height: 120%;
+}
+
+.basket-total {
+    width: 340px;
+    height: 26px;
+    border-top: 3px solid white;
+    padding-top: 8px;
+    margin-top: 8px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    box-sizing: content-box;
+}
+
+.basket-total span:first-child {
+    width: 52px;
+    height: 26px;
+    font-family: "Palanquin";
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.basket-total span:last-child {
+    height: 26px;
+    font-family: "Palanquin";
+    font-size: 22px;
+    font-weight: 600;
+    line-height: 120%;
+}
+
+.buy-button {
+    width: 100%;
+    height: 42px;
+    margin-top: 12px;
+    border: none;
+    border-radius: 24px;
+    background-color: #e76c1f;
+    color: white;
+    font-size: 14px;
+    font-weight: 600;
+    cursor: pointer;
+}
+
 .footer {
     width: 100%;
     height: 128px;
