@@ -286,3 +286,9 @@
     color: #e76c1f;
     cursor: pointer;
 }
+
+.category-section h2 span {
+    font-family: "Palanquin";
+    font-size: 40px;
+    font-weight: 400;
+}
