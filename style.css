@@ -155,6 +155,7 @@
 
 .restaurant-description {
     margin: 18px 0 0;
+    font-family: "Palanquin";
     font-size: 20px;
     font-weight: 600;
     color: #333333;
@@ -196,7 +197,7 @@
 }
 
 .product-list {
-    width: 700px;
+    width: 713px;
     margin-left: 119px;
     margin-top: 22px;
     margin-bottom: 50px;
@@ -227,10 +228,12 @@
 
 .product-info {
     width: 339px;
+    min-width: 339px;
     height: 70px;
     display: flex;
     flex-direction: column;
     gap: 8px;
+    flex-shrink: 0;
 }
 
 .product-info h3 {
@@ -252,7 +255,7 @@
 }
 
 .product-action {
-    width: 339px;
+    width: 340px;
     height: 74px;
     margin-left: auto;
     display: flex;
@@ -267,9 +270,9 @@
     font-family: "Palanquin";
     font-size: 24px;
     font-weight: 600;
-    width: 74px;
     line-height: 120%;
     color: #333333;
+    text-align: right;
 }
 
 .add-button {
