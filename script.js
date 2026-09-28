@@ -1,7 +1,23 @@
 const basket = [];
+function renderMeals() {
+    const burgerList = document.querySelector("#burger-list");
 
+    burgerList.innerHTML = "";
+
+    meals
+        .filter((meal) => meal.category === "Burger & Sandwiches")
+        .forEach((meal) => {
+            burgerList.innerHTML += createMealTemplate(meal);
+        });
+}
+// Add to basket
 function addToBasket(event) {
-    const button = event.target;
+    const button = event.target.closest(".add-button");
+
+    if (!button) {
+        return;
+    }
+
     const productCard = button.closest(".product-card");
 
     const name = productCard.querySelector("h3").textContent;
@@ -25,10 +41,12 @@ function addToBasket(event) {
         basket.push(meal);
     }
     console.log(basket);
-    renderMeals();
+    renderBasket();
     updateBasket();
 }
-function renderMeals() {
+
+// Render basket
+function renderBasket() {
     const basketItems = document.querySelector(".basket-items");
 
     basketItems.innerHTML = "";
@@ -36,34 +54,39 @@ function renderMeals() {
     basket.forEach((meal) => {
         const basketItem = document.createElement("div");
 
-     basketItem.innerHTML = `
+        basketItem.innerHTML = `
             <span>${meal.quantity} x ${meal.name} - ${meal.price.toFixed(2)}€</span>
             <button class="minus-button">−</button>
             <button class="plus-button">+</button>
         `;
 
-    basketItems.appendChild(basketItem);
-    const plusButton = basketItem.querySelector(".plus-button");
+        basketItems.appendChild(basketItem);
+        const plusButton = basketItem.querySelector(".plus-button");
 
-    plusButton.addEventListener("click", () => {
-        meal.quantity++;
-        renderMeals();
-        updateBasket();
-       });
+        plusButton.addEventListener("click", () => {
+            meal.quantity++;
+            renderBasket();
+            updateBasket();
+        });
 
-       const minusButton = basketItem.querySelector(".minus-button");
+        const minusButton = basketItem.querySelector(".minus-button");
 
-minusButton.addEventListener("click", () => {
-    if (meal.quantity > 1) {
-        meal.quantity--;
-        renderMeals();
-        updateBasket();
-    }
-});
+        minusButton.addEventListener("click", () => {
+            if (meal.quantity > 1) {
+                meal.quantity--;
+            } else {
+                const index = basket.indexOf(meal);
+                basket.splice(index, 1);
+            }
 
-});  
+            renderBasket();
+            updateBasket();
+        });
+
+    });
 }
 
+// Update total
 function updateBasket() {
     let subtotal = 0;
 
@@ -82,8 +105,15 @@ function updateBasket() {
     console.log("Total:", total);
 }
 
-const addButtons = document.querySelectorAll(".add-button");
 
-addButtons.forEach((button) => {
-    button.addEventListener("click", addToBasket);
-});
+document.addEventListener("click", addToBasket);
+
+
+
+// Update total
+// Change quantity
+// Buy order
+// Show confirmation
+// Hide confirmation
+// Event listener
+renderMeals();

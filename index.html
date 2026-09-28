@@ -47,55 +47,9 @@
             <h2>Burger &amp; Sandwiches</h2>
         </div>
     </section>
-    <section class="product-list">
+    <section class="product-list" id="burger-list">
 
-        <article class="product-card">
-            <img src="./assets/images/veggie_mushroom_black_burger.jpg" alt="Veggie mushroom black burger"
-                class="product-image">
 
-            <div class="product-info">
-                <h3>Veggie mushroom black burger</h3>
-                <p>Mixed green salad, Tomatoes, Edamame, Mushrooms</p>
-            </div>
-            <div class="product-action">
-                <span class="product-price">16,90€</span>
-                <button class="add-button">Add to basket</button>
-            </div>
-        </article>
-
-        <article class="product-card">
-            <img src="./assets/images/all_meat_burger.jpg" alt="All meat burger" class="product-image">
-            <div class="product-info">
-                <h3>All meat burger</h3>
-                <p>Beef, Bacon, Dill pickles, Smoked cheese, Ketchup, BBQ souse</p>
-            </div>
-            <div class="product-action">
-                <span class="product-price">15,90€</span>
-                <button class="add-button">Add to basket</button>
-            </div>
-        </article>
-        <article class="product-card">
-            <img src="./assets/images/beef_red_burger.jpg" alt="Beef red burger" class="product-image">
-            <div class="product-info">
-                <h3>Beef red burger</h3>
-                <p>Beef, Cheese, Tomatoes, Lettuce, Onion</p>
-            </div>
-            <div class="product-action">
-                <span class="product-price">14,90€</span>
-                <button class="add-button">Add to basket</button>
-            </div>
-        </article>
-        <article class="product-card">
-            <img src="./assets/images/big_chicken_burger.jpg" alt="Big chicken burger" class="product-image">
-            <div class="product-info">
-                <h3>Big chicken burger</h3>
-                <p>Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper</p>
-            </div>
-            <div class="product-action">
-                <span class="product-price">15,90€</span>
-                <button class="add-button">Add to basket</button>
-            </div>
-        </article>
     </section>
 
     <section class="category-section">
@@ -249,60 +203,62 @@
         </article>
 
     </section>
-<aside class="basket">
-    <h2>Your Basket</h2>
-    <div class="basket-items">
-<article class="basket-item">
-            <div class="basket-item-info">
-                <strong>1 x Veggie mushroom black burger</strong>
-                <span>▣1+</span>
+    <aside class="basket">
+        <h2>Your Basket</h2>
+        <div class="basket-items">
+            <article class="basket-item">
+                <div class="basket-item-info">
+                    <strong>1 x Veggie mushroom black burger</strong>
+                    <span>▣1+</span>
+                </div>
+
+                <span class="basket-item-price">16,90€</span>
+            </article>
+            <article class="basket-item">
+                <div class="basket-item-info">
+                    <strong>1 x Pizza Margherita</strong>
+                    <span>▣1+</span>
+                </div>
+                <span class="basket-item-price">11,90€</span>
+            </article>
+            <article class="basket-item">
+                <div class="basket-item-info">
+                    <strong>1 x Mini green Salad</strong>
+                    <span>1+</span>
+                </div>
+                <span class="basket-item-price">7,90€</span>
+            </article>
+
+        </div>
+        <div class="basket-summary">
+            <div>
+                <span>Subtotal</span>
+                <span class="subtotal">0,00€</span>
             </div>
 
-            <span class="basket-item-price">16,90€</span>
-        </article>
-          <article class="basket-item">
-            <div class="basket-item-info">
-                <strong>1 x Pizza Margherita</strong>
-                <span>▣1+</span>
+            <div>
+                <span>Delivery fee</span>
+                <span class="delivery-fee">4,99€</span>
             </div>
-             <span class="basket-item-price">11,90€</span>
-        </article>
-        <article class="basket-item">
-            <div class="basket-item-info">
-                <strong>1 x Mini green Salad</strong>
-                <span>1+</span>
+
+            <div class="basket-total">
+                <span>Total</span>
+                <span class="total">0,00€</span>
             </div>
-            <span class="basket-item-price">7,90€</span>
-        </article>
 
-    </div>
- <div class="basket-summary">
-    <div>
-        <span>Subtotal</span>
-        <span class="subtotal">0,00€</span>
-    </div>
-
-    <div>
-        <span>Delivery fee</span>
-        <span class="delivery-fee">4,99€</span>
-    </div>
-
-    <div class="basket-total">
-        <span>Total</span>
-        <span class="total">0,00€</span>
-    </div>
-
-    <button class="buy-button">
-        Buy now (0,00€)
-    </button>
-</div>
-</aside>
+            <button class="buy-button">
+                Buy now (0,00€)
+            </button>
+        </div>
+    </aside>
 
     <footer class="footer">
         <img src="./assets/icons/footer.png" alt="BurgerHouse footer">
     </footer>
 
-     <script src="./script.js"></script>
+    <script src="./scripts/database.js"></script>
+    <script src="./scripts/template.js"></script>
+    <script src="./script.js"></script>
 
 </body>
 
