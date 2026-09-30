@@ -27,110 +27,155 @@ function renderMeals() {
 }
 
 
-    // Add to basket
-    function addToBasket(event) {
-        const button = event.target.closest(".add-button");
+// Add to basket
+function addToBasket(event) {
+    const button = event.target.closest(".add-button");
 
-        if (!button) {
-            return;
-        }
-
-        const productCard = button.closest(".product-card");
-
-        const name = productCard.querySelector("h3").textContent;
-        const priceText = productCard.querySelector(".product-price").textContent;
-
-        const price = parseFloat(
-            priceText.replace("€", "").replace(",", ".")
-        );
-
-        const existingMeal = basket.find((item) => item.name === name);
-
-        if (existingMeal) {
-            existingMeal.quantity++;
-        } else {
-            const meal = {
-                name: name,
-                price: price,
-                quantity: 1
-            };
-
-            basket.push(meal);
-        }
-        console.log(basket);
-        renderBasket();
-        updateBasket();
+    if (!button) {
+        return;
     }
 
-    // Render basket
-    function renderBasket() {
-        const basketItems = document.querySelector(".basket-items");
+    const productCard = button.closest(".product-card");
 
-        basketItems.innerHTML = "";
+    const name = productCard.querySelector("h3").textContent;
+    const priceText = productCard.querySelector(".product-price").textContent;
 
-        basket.forEach((meal) => {
-            const basketItem = document.createElement("div");
+    const price = parseFloat(
+        priceText.replace("€", "").replace(",", ".")
+    );
 
-            basketItem.innerHTML = `
+    const existingMeal = basket.find((item) => item.name === name);
+
+    if (existingMeal) {
+        existingMeal.quantity++;
+    } else {
+        const meal = {
+            name: name,
+            price: price,
+            quantity: 1
+        };
+
+        basket.push(meal);
+    }
+    console.log(basket);
+    renderBasket();
+    updateBasket();
+}
+
+// Render basket
+function renderBasket() {
+    const basketItems = document.querySelector(".basket-items");
+
+    basketItems.innerHTML = "";
+
+    basket.forEach((meal) => {
+        const basketItem = document.createElement("div");
+
+        basketItem.innerHTML = `
             <span>${meal.quantity} x ${meal.name} - ${meal.price.toFixed(2)}€</span>
             <button class="minus-button">−</button>
             <button class="plus-button">+</button>
         `;
 
-            basketItems.appendChild(basketItem);
-            const plusButton = basketItem.querySelector(".plus-button");
+        basketItems.appendChild(basketItem);
+        const plusButton = basketItem.querySelector(".plus-button");
 
-            plusButton.addEventListener("click", () => {
-                meal.quantity++;
-                renderBasket();
-                updateBasket();
-            });
-
-            const minusButton = basketItem.querySelector(".minus-button");
-
-            minusButton.addEventListener("click", () => {
-                if (meal.quantity > 1) {
-                    meal.quantity--;
-                } else {
-                    const index = basket.indexOf(meal);
-                    basket.splice(index, 1);
-                }
-
-                renderBasket();
-                updateBasket();
-            });
-
-        });
-    }
-
-    // Update total
-    function updateBasket() {
-        let subtotal = 0;
-
-        basket.forEach((meal) => {
-            subtotal += meal.price * meal.quantity;
+        plusButton.addEventListener("click", () => {
+            meal.quantity++;
+            renderBasket();
+            updateBasket();
         });
 
-        const deliveryFee = 4.99;
-        const total = subtotal + deliveryFee;
-        const subtotalElement = document.querySelector(".subtotal");
-        const totalElement = document.querySelector(".total");
-        subtotalElement.textContent = `${subtotal.toFixed(2).replace(".", ",")}€`;
-        totalElement.textContent = `${total.toFixed(2).replace(".", ",")}€`;
+        const minusButton = basketItem.querySelector(".minus-button");
 
-        console.log("Subtotal:", subtotal);
-        console.log("Total:", total);
+        minusButton.addEventListener("click", () => {
+            if (meal.quantity > 1) {
+                meal.quantity--;
+            } else {
+                const index = basket.indexOf(meal);
+                basket.splice(index, 1);
+            }
+
+            renderBasket();
+            updateBasket();
+        });
+
+    });
+}
+
+// Update total
+function updateBasket() {
+    let subtotal = 0;
+
+    basket.forEach((meal) => {
+        subtotal += meal.price * meal.quantity;
+    });
+
+    const deliveryFee = basket.length > 0 ? 4.99 : 0;
+    const total = subtotal + deliveryFee;
+
+    const subtotalElement = document.querySelector(".subtotal");
+    const deliveryElement = document.querySelector(".delivery-fee");
+    const totalElement = document.querySelector(".total");
+
+    subtotalElement.textContent = `${subtotal.toFixed(2).replace(".", ",")}€`;
+    deliveryElement.textContent = `${deliveryFee.toFixed(2).replace(".", ",")}€`;
+    totalElement.textContent = `${total.toFixed(2).replace(".", ",")}€`;
+
+    const buyButton = document.querySelector(".buy-button");
+    buyButton.textContent = `Buy now (${total.toFixed(2).replace(".", ",")}€)`;
+
+    console.log("Subtotal:", subtotal);
+    console.log("Total:", total);
+}
+
+
+document.addEventListener("click", addToBasket);
+
+
+
+// Update total
+// Change quantity
+
+
+// Buy order
+// Buy order
+function buyOrder() {
+    if (basket.length === 0) {
+        return;
     }
 
+    basket.length = 0;
+    renderBasket();
+    updateBasket();
+    showConfirmation();
+    hideConfirmation();
+}
 
-    document.addEventListener("click", addToBasket);
+const buyButton = document.querySelector(".buy-button");
+
+buyButton.addEventListener("click", buyOrder);
 
 
+// Show confirmation
+function showConfirmation() {
+    const confirmation = document.querySelector(".confirmation");
 
-    // Update total
-    // Change quantity
-    // Buy order
-    // Show confirmation
-    // Hide confirmation
-    // Event listener
-    renderMeals();
+    confirmation.classList.add("show");
+}
+// Hide confirmation
+function hideConfirmation() {
+    const confirmation = document.querySelector(".confirmation");
+
+    setTimeout(() => {
+        confirmation.classList.remove("show");
+    }, 3000);
+}
+const closeConfirmation = document.querySelector(".close-confirmation");
+closeConfirmation.addEventListener("click", () => {
+    const confirmation = document.querySelector(".confirmation");
+
+    confirmation.classList.remove("show");
+});
+// Event listener
+renderMeals();
