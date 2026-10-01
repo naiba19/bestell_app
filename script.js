@@ -148,6 +148,7 @@ function buyOrder() {
     basket.length = 0;
     renderBasket();
     updateBasket();
+    document.querySelector(".basket").classList.add("hidden");
     showConfirmation();
     hideConfirmation();
 }
@@ -169,6 +170,7 @@ function hideConfirmation() {
 
     setTimeout(() => {
         confirmation.classList.remove("show");
+        document.querySelector(".basket").classList.remove("hidden");
     }, 3000);
 }
 const closeConfirmation = document.querySelector(".close-confirmation");
@@ -179,3 +181,4 @@ closeConfirmation.addEventListener("click", () => {
 });
 // Event listener
 renderMeals();
+renderBasket();
