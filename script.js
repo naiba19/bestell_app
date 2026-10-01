@@ -72,8 +72,8 @@ function renderBasket() {
         const basketItem = document.createElement("div");
         basketItem.classList.add("basket-item");
 
-       basketItem.innerHTML = `
-    <div class="basket-item-info">
+        basketItem.innerHTML = `
+        <div class="basket-item-info">
         <strong>${meal.quantity} x ${meal.name}</strong>
         <div class="basket-controls">
             <button class="minus-button">−</button>
@@ -130,6 +130,8 @@ function updateBasket() {
     subtotalElement.textContent = `${subtotal.toFixed(2).replace(".", ",")}€`;
     deliveryElement.textContent = `${deliveryFee.toFixed(2).replace(".", ",")}€`;
     totalElement.textContent = `${total.toFixed(2).replace(".", ",")}€`;
+    mobileBasketTotal.textContent =
+    `${total.toFixed(2).replace(".", ",")}€`;
 
     const buyButton = document.querySelector(".buy-button");
     buyButton.textContent = `Buy now (${total.toFixed(2).replace(".", ",")}€)`;
@@ -188,6 +190,17 @@ closeConfirmation.addEventListener("click", () => {
 
     confirmation.classList.remove("show");
 });
+
+const mobileBasketButton = document.querySelector("#mobile-basket-button");
+const mobileBasketTotal = document.querySelector("#mobile-basket-total");
 // Event listener
 renderMeals();
 renderBasket();
+
+
+
+mobileBasketButton.addEventListener("click", () => {
+    const basketElement = document.querySelector(".basket");
+
+    basketElement.classList.toggle("mobile-open");
+});
