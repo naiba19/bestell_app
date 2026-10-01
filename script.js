@@ -70,12 +70,21 @@ function renderBasket() {
 
     basket.forEach((meal) => {
         const basketItem = document.createElement("div");
+        basketItem.classList.add("basket-item");
 
-        basketItem.innerHTML = `
-            <span>${meal.quantity} x ${meal.name} - ${meal.price.toFixed(2)}€</span>
+       basketItem.innerHTML = `
+    <div class="basket-item-info">
+        <strong>${meal.quantity} x ${meal.name}</strong>
+        <div class="basket-controls">
             <button class="minus-button">−</button>
+            <span>${meal.quantity}</span>
             <button class="plus-button">+</button>
-        `;
+        </div>
+    </div>
+    <span class="basket-item-price">
+        ${meal.price.toFixed(2).replace(".", ",")}€
+    </span>
+`;
 
         basketItems.appendChild(basketItem);
         const plusButton = basketItem.querySelector(".plus-button");
