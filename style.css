@@ -79,16 +79,13 @@
     width: 60px;
     height: 60px;
     padding: 0;
-
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     gap: 7px;
-
     background: transparent;
     border: none;
-
     cursor: pointer;
 }
 
@@ -551,6 +548,9 @@
 .confirmation.show {
     opacity: 1;
     visibility: visible;
+}
+#mobile-basket-button {
+    display: none;
 }
 
 .footer {
