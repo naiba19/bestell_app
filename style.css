@@ -194,8 +194,7 @@
 }
 
 .product-list {
-    width: 713px;
-
+    width: calc(100vw - 520px);
     margin-left: 119px;
     margin-top: 22px;
     margin-bottom: 50px;
@@ -205,7 +204,7 @@
 }
 
 .product-card {
-    width: 713px;
+    width: 80%;
     height: 141px;
     padding: 10px;
     box-sizing: border-box;
@@ -553,6 +552,7 @@
     opacity: 1;
     visibility: visible;
 }
+
 #mobile-basket-button {
     display: none;
 }
