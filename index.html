@@ -76,6 +76,7 @@
     </section>
 
     <aside class="basket">
+        <button class="basket-close" type="button" aria-label="Close basket">×</button>
         <h2>Your Basket</h2>
         <div class="basket-items">
         </div>
@@ -100,9 +101,21 @@
             </button>
         </div>
     </aside>
-    <button class="mobile-basket-button" id="mobile-basket-button">
-        Basket <span id="mobile-basket-total">0,00€</span>
-    </button>
+    <nav class="mobile-bottom-nav" aria-label="Mobile navigation">
+        <span class="mobile-nav-item" aria-hidden="true">
+            <img src="./assets/icons/home.png" alt="">
+        </span>
+        <span class="mobile-nav-item" aria-hidden="true">
+            <img src="./assets/icons/profile.png" alt="">
+        </span>
+        <span class="mobile-nav-item" aria-hidden="true">
+            <img src="./assets/icons/orders.png" alt="">
+        </span>
+        <button class="mobile-nav-item mobile-cart-button" id="mobile-basket-button" type="button" aria-label="Open basket">
+            <img src="./assets/icons/shopping_cart_orange.png" alt="">
+            <span class="mobile-cart-count" id="mobile-basket-total">0</span>
+        </button>
+    </nav>
     <div class="confirmation">
         <div class="confirmation-card">
             <button class="close-confirmation">×</button>

@@ -310,6 +310,10 @@
     display: none;
 }
 
+.basket-close {
+    display: none;
+}
+
 .basket h2 {
     width: 178px;
     height: 35px;
@@ -554,6 +558,10 @@
 }
 
 #mobile-basket-button {
+    display: none;
+}
+
+.mobile-bottom-nav {
     display: none;
 }
 

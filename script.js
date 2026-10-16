@@ -130,8 +130,10 @@ function updateBasket() {
     subtotalElement.textContent = `${subtotal.toFixed(2).replace(".", ",")}€`;
     deliveryElement.textContent = `${deliveryFee.toFixed(2).replace(".", ",")}€`;
     totalElement.textContent = `${total.toFixed(2).replace(".", ",")}€`;
-    mobileBasketTotal.textContent =
-    `${total.toFixed(2).replace(".", ",")}€`;
+    mobileBasketTotal.textContent = basket.reduce(
+        (count, meal) => count + meal.quantity,
+        0
+    );
 
     const buyButton = document.querySelector(".buy-button");
     buyButton.textContent = `Buy now (${total.toFixed(2).replace(".", ",")}€)`;
@@ -196,6 +198,7 @@ const mobileBasketTotal = document.querySelector("#mobile-basket-total");
 // Event listener
 renderMeals();
 renderBasket();
+updateBasket();
 
 
 
@@ -203,4 +206,8 @@ mobileBasketButton.addEventListener("click", () => {
     const basketElement = document.querySelector(".basket");
 
     basketElement.classList.toggle("mobile-open");
+});
+
+document.querySelector(".basket-close").addEventListener("click", () => {
+    document.querySelector(".basket").classList.remove("mobile-open");
 });

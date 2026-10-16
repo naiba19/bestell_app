@@ -9,7 +9,7 @@ function createMealTemplate(meal) {
             <div class="product-action">
                 <span class="product-price">${meal.price.toFixed(2).replace(".", ",")}€</span>
                 <button class="add-button" aria-label="Add to basket">
-                    +
+                    Add to basket
                 </button>
             </div>
         </article>
