@@ -1,7 +1,7 @@
 function createMealTemplate(meal) {
       return `
       <article class="product-card">
-           <img src="${meal.image}" alt="${meal.name}" class="product-image">
+           <img src="${meal.image}" alt="${meal.name}" class="product-image" loading="lazy">
             <div class="product-info">
                 <h3>${meal.name}</h3>
                 <p>${meal.description}</p>

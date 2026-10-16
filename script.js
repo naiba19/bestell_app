@@ -211,3 +211,14 @@ mobileBasketButton.addEventListener("click", () => {
 document.querySelector(".basket-close").addEventListener("click", () => {
     document.querySelector(".basket").classList.remove("mobile-open");
 });
+
+let basketResizeTimer;
+window.addEventListener("resize", () => {
+    const basketElement = document.querySelector(".basket");
+
+    basketElement.classList.add("resizing");
+    clearTimeout(basketResizeTimer);
+    basketResizeTimer = setTimeout(() => {
+        basketElement.classList.remove("resizing");
+    }, 150);
+});
