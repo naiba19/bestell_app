@@ -1,4 +1,9 @@
 const basket = [];
+
+function formatPrice(price) {
+    return `${price.toFixed(2).replace(".", ",")}€`;
+}
+
 function renderMeals() {
     const burgerList = document.querySelector("#burger-list");
     const pizzaList = document.querySelector("#pizza-list");
@@ -25,7 +30,6 @@ function renderMeals() {
             saladList.innerHTML += createMealTemplate(meal);
         });
 }
-
 
 // Add to basket
 function addToBasket(event) {
@@ -57,7 +61,6 @@ function addToBasket(event) {
 
         basket.push(meal);
     }
-    console.log(basket);
     renderBasket();
     updateBasket();
 }
@@ -68,7 +71,7 @@ function renderBasket() {
 
     basketItems.innerHTML = "";
 
-    basket.forEach((meal) => {
+    basket.forEach((meal, index) => {
         const basketItem = document.createElement("div");
         basketItem.classList.add("basket-item");
 
@@ -76,40 +79,43 @@ function renderBasket() {
         <div class="basket-item-info">
         <strong>${meal.quantity} x ${meal.name}</strong>
         <div class="basket-controls">
-            <button class="minus-button">−</button>
+            <button class="minus-button" data-meal-index="${index}">−</button>
             <span>${meal.quantity}</span>
-            <button class="plus-button">+</button>
+            <button class="plus-button" data-meal-index="${index}">+</button>
         </div>
     </div>
     <span class="basket-item-price">
-        ${meal.price.toFixed(2).replace(".", ",")}€
+        ${formatPrice(meal.price)}
     </span>
 `;
 
         basketItems.appendChild(basketItem);
-        const plusButton = basketItem.querySelector(".plus-button");
-
-        plusButton.addEventListener("click", () => {
-            meal.quantity++;
-            renderBasket();
-            updateBasket();
-        });
-
-        const minusButton = basketItem.querySelector(".minus-button");
-
-        minusButton.addEventListener("click", () => {
-            if (meal.quantity > 1) {
-                meal.quantity--;
-            } else {
-                const index = basket.indexOf(meal);
-                basket.splice(index, 1);
-            }
-
-            renderBasket();
-            updateBasket();
-        });
-
     });
+}
+
+function updateBasketItem(event) {
+    const button = event.target.closest(".plus-button, .minus-button");
+
+    if (!button) {
+        return;
+    }
+
+    const meal = basket[Number(button.dataset.mealIndex)];
+
+    if (!meal) {
+        return;
+    }
+
+    if (button.classList.contains("plus-button")) {
+        meal.quantity++;
+    } else if (meal.quantity > 1) {
+        meal.quantity--;
+    } else {
+        basket.splice(Number(button.dataset.mealIndex), 1);
+    }
+
+    renderBasket();
+    updateBasket();
 }
 
 // Update total
@@ -127,32 +133,18 @@ function updateBasket() {
     const deliveryElement = document.querySelector(".delivery-fee");
     const totalElement = document.querySelector(".total");
 
-    subtotalElement.textContent = `${subtotal.toFixed(2).replace(".", ",")}€`;
-    deliveryElement.textContent = `${deliveryFee.toFixed(2).replace(".", ",")}€`;
-    totalElement.textContent = `${total.toFixed(2).replace(".", ",")}€`;
-    mobileBasketTotal.textContent = basket.reduce(
+    subtotalElement.textContent = formatPrice(subtotal);
+    deliveryElement.textContent = formatPrice(deliveryFee);
+    totalElement.textContent = formatPrice(total);
+    document.querySelector("#mobile-basket-total").textContent = basket.reduce(
         (count, meal) => count + meal.quantity,
         0
     );
 
     const buyButton = document.querySelector(".buy-button");
-    buyButton.textContent = `Buy now (${total.toFixed(2).replace(".", ",")}€)`;
-
-    console.log("Subtotal:", subtotal);
-    console.log("Total:", total);
+    buyButton.textContent = `Buy now (${formatPrice(total)})`;
 }
 
-
-document.addEventListener("click", addToBasket);
-
-
-
-// Update total
-// Change quantity
-
-
-// Buy order
-// Buy order
 function buyOrder() {
     if (basket.length === 0) {
         return;
@@ -163,22 +155,16 @@ function buyOrder() {
     updateBasket();
     document.querySelector(".basket").classList.add("hidden");
     showConfirmation();
-    hideConfirmation();
+    scheduleConfirmationDismissal();
 }
 
-const buyButton = document.querySelector(".buy-button");
-
-buyButton.addEventListener("click", buyOrder);
-
-
-// Show confirmation
 function showConfirmation() {
     const confirmation = document.querySelector(".confirmation");
 
     confirmation.classList.add("show");
 }
-// Hide confirmation
-function hideConfirmation() {
+
+function scheduleConfirmationDismissal() {
     const confirmation = document.querySelector(".confirmation");
 
     setTimeout(() => {
@@ -186,39 +172,36 @@ function hideConfirmation() {
         document.querySelector(".basket").classList.remove("hidden");
     }, 3000);
 }
-const closeConfirmation = document.querySelector(".close-confirmation");
-closeConfirmation.addEventListener("click", () => {
+
+function initializeApp() {
+    const basketElement = document.querySelector(".basket");
+    const basketItems = document.querySelector(".basket-items");
     const confirmation = document.querySelector(".confirmation");
+    let basketResizeTimer;
 
-    confirmation.classList.remove("show");
-});
+    document.addEventListener("click", addToBasket);
+    basketItems.addEventListener("click", updateBasketItem);
+    document.querySelector(".buy-button").addEventListener("click", buyOrder);
+    document.querySelector(".close-confirmation").addEventListener("click", () => {
+        confirmation.classList.remove("show");
+    });
+    document.querySelector("#mobile-basket-button").addEventListener("click", () => {
+        basketElement.classList.toggle("mobile-open");
+    });
+    document.querySelector(".basket-close").addEventListener("click", () => {
+        basketElement.classList.remove("mobile-open");
+    });
+    window.addEventListener("resize", () => {
+        basketElement.classList.add("resizing");
+        clearTimeout(basketResizeTimer);
+        basketResizeTimer = setTimeout(() => {
+            basketElement.classList.remove("resizing");
+        }, 150);
+    });
 
-const mobileBasketButton = document.querySelector("#mobile-basket-button");
-const mobileBasketTotal = document.querySelector("#mobile-basket-total");
-// Event listener
-renderMeals();
-renderBasket();
-updateBasket();
+    renderMeals();
+    renderBasket();
+    updateBasket();
+}
 
-
-
-mobileBasketButton.addEventListener("click", () => {
-    const basketElement = document.querySelector(".basket");
-
-    basketElement.classList.toggle("mobile-open");
-});
-
-document.querySelector(".basket-close").addEventListener("click", () => {
-    document.querySelector(".basket").classList.remove("mobile-open");
-});
-
-let basketResizeTimer;
-window.addEventListener("resize", () => {
-    const basketElement = document.querySelector(".basket");
-
-    basketElement.classList.add("resizing");
-    clearTimeout(basketResizeTimer);
-    basketResizeTimer = setTimeout(() => {
-        basketElement.classList.remove("resizing");
-    }, 150);
-});
+initializeApp();

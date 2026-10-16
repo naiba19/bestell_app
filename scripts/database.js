@@ -4,44 +4,44 @@ const meals = [
         price: 16.90,
         category: "Burger & Sandwiches",
         image: "./assets/images/veggie_mushroom_black_burger_web.jpg",
-       description: "Mixed green salad, Tomatoes, Edamame, Mushrooms"
-    },  
- {
+        description: "Mixed green salad, Tomatoes, Edamame, Mushrooms"
+    },
+    {
         name: "All meat burger",
         price: 15.90,
         category: "Burger & Sandwiches",
         image: "./assets/images/all_meat_burger_web.jpg",
         description: "Beef, Bacon, Dill pickles, Smoked cheese, Ketchup, BBQ souse"
     },
-{
+    {
         name: "Beef red burger",
         price: 14.90,
         category: "Burger & Sandwiches",
         image: "./assets/images/beef_red_burger_web.jpg",
         description: "Beef, Cheese, Tomatoes, Lettuce, Onion"
     },
- {
+    {
         name: "Big chicken burger",
         price: 15.90,
         category: "Burger & Sandwiches",
         image: "./assets/images/big_chicken_burger_web.jpg",
         description: "Chicken, Cheese, Tomatoes, Lettuce, Onion, Bell pepper"
     },
- {
+    {
         name: "Pizza Margherita",
         price: 11.90,
         category: "Pizza",
         image: "./assets/images/margherita_web.jpg",
         description: "Tomato Sauce, Mozzarella"
     },
-{
+    {
         name: "Pizza Chorizo",
         price: 13.90,
         category: "Pizza",
         image: "./assets/images/pizza_chorizo_web.jpg",
         description: "Tomato slices, Mozzarella, Chorizo"
     },
-    
+
     {
         name: "Funghi",
         price: 12.90,
@@ -56,7 +56,7 @@ const meals = [
         image: "./assets/images/quattro_formaggi_with_chicken_web.jpg",
         description: "Chicken, Mozzarella, Gorgonzola, Fontina, Parmigiano Reggiano"
     },
-     {
+    {
         name: "Warm beef arugula salad",
         price: 16.90,
         category: "Salads",

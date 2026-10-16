@@ -47,7 +47,6 @@
     }
 }
 
-
 * {
     box-sizing: border-box;
 }
@@ -496,13 +495,13 @@ body {
     }
 
     .add-button {
-    align-self: center;
-    width: 24px;
-    height: 24px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+        align-self: center;
+        width: 24px;
+        height: 24px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
 
     .product-action {
         width: 60px;
